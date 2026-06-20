@@ -1,11 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("Home");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,16 +25,25 @@ export default function Navbar() {
   ];
 
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -40 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1 }}
-      className={`fixed top-0 left-0 right-0 z-50 flex items-start justify-between px-12 transition-all duration-500 ${
-        scrolled
-          ? "py-4 backdrop-blur-md bg-black/10"
-          : "py-8 bg-transparent"
-      }`}
-    >
+    <>
+      {/* Dark Blue Shutter Loader */}
+      <motion.div
+        initial={{ top: 0 }}
+        animate={{ top: "100vh" }}
+        transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1], delay: 0.1 }}
+        className="fixed left-0 right-0 h-[100vh] bg-[#050024] z-[9999] pointer-events-none"
+      />
+
+      <motion.nav
+        initial={{ opacity: 0, y: -40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.8 }}
+        className={`fixed top-0 left-0 right-0 z-50 flex items-start justify-between px-6 md:px-12 transition-all duration-500 ${
+          scrolled
+            ? "py-4 backdrop-blur-md bg-black/10"
+            : "py-6 md:py-8 bg-transparent"
+        }`}
+      >
       {/* Logo */}
       <motion.div
         animate={{
@@ -45,7 +55,7 @@ export default function Navbar() {
         <img
           src="/images/logo.png"
           alt="Logo"
-          className="w-20 h-20 object-contain"
+          className="w-16 h-16 md:w-20 md:h-20 object-contain"
         />
       </motion.div>
 
@@ -55,7 +65,7 @@ export default function Navbar() {
           scale: scrolled ? 0.92 : 1,
         }}
         transition={{ duration: 0.4 }}
-        className="flex items-center gap-12 mt-4"
+        className="hidden md:flex items-center gap-6 lg:gap-12 mt-4"
       >
         {menuItems.map((item) => (
           <button
@@ -89,18 +99,18 @@ export default function Navbar() {
         ))}
       </motion.div>
 
-      {/* Reach Out */}
-      <motion.div
-        animate={{
-          scale: scrolled ? 0.9 : 1,
-        }}
-        transition={{ duration: 0.4 }}
-        className="group cursor-pointer"
-      >
+      <div className="flex items-center gap-6">
+        {/* Reach Out */}
+        <motion.div
+          animate={{
+            scale: scrolled ? 0.9 : 1,
+          }}
+          transition={{ duration: 0.4 }}
+          className="group cursor-pointer"
+        >
         <div className="flex flex-col items-end text-[#1a00ff] font-black uppercase leading-none">
-          <span className="text-lg tracking-tight">Reach</span>
-
-          <div className="flex items-center gap-1">
+            <span className="text-base md:text-lg tracking-tight">Reach</span>
+            <div className="flex items-center gap-1">
             <svg
               width="18"
               height="18"
@@ -112,14 +122,68 @@ export default function Navbar() {
               strokeLinejoin="round"
               className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
             >
-              <path d="M7 17L17 7" />
-              <path d="M7 7H17V17" />
-            </svg>
-
-            <span className="text-lg tracking-tight">Out</span>
+                <path d="M7 17L17 7" />
+                <path d="M7 7H17V17" />
+              </svg>
+              <span className="text-base md:text-lg tracking-tight">Out</span>
+            </div>
           </div>
+        </motion.div>
+
+        {/* Mobile Hamburger Icon */}
+        <div 
+          className="flex md:hidden items-center justify-end text-[#ff0033] cursor-pointer"
+          onClick={() => setIsMobileMenuOpen(true)}
+        >
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
         </div>
-      </motion.div>
+      </div>
     </motion.nav>
+
+    {/* Mobile Menu Slider */}
+    <AnimatePresence>
+      {isMobileMenuOpen && (
+        <motion.div
+          initial={{ x: "100%" }}
+          animate={{ x: 0 }}
+          exit={{ x: "-100%" }}
+          transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+          className="fixed inset-0 z-[10000] bg-black flex flex-col items-center justify-center"
+        >
+          {/* Close Button */}
+          <button 
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="absolute top-8 right-8 text-[#ff0033] cursor-pointer hover:scale-110 transition-transform"
+          >
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+
+          <div className="flex flex-col items-center gap-10">
+            {menuItems.map((item) => (
+              <button
+                key={item}
+                onClick={() => {
+                  setActive(item);
+                  setIsMobileMenuOpen(false);
+                }}
+                className={`text-2xl md:text-4xl font-thin uppercase tracking-[0.2em] transition-colors ${
+                  active === item ? "text-[#ff0033]" : "text-white"
+                }`}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+    </>
   );
 }
