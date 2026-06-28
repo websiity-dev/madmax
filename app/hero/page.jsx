@@ -34,17 +34,17 @@ export default function HeroPage() {
   className="flex flex-col text-[#ff0033] uppercase tracking-tighter"
   style={{ fontFamily: "'Boldonse', Impact, sans-serif" }}
 >
-  <div className="flex items-end gap-2 md:gap-4 md:mb-1 scale-y-125 origin-left leading-none">
-    <span className="text-l md:text-[3rem] mb-2 md:mb-3 ml-2">
+  <div className="flex items-end gap-2 md:gap-4 mt-3.5 md:mb-1 scale-y-120 origin-left leading-none">
+    <span className="text-[10px] md:text-[1rem] -mb-6 md:-mb-0.5 ml-2">
       MAX
     </span>
 
-    <span className="text-[5rem] md:text-[9rem] leading-none">
+    <span className="text-[30px] md:text-[4rem] leading-none">
       EFFORTS
     </span>
   </div>
 
-  <div className="text-[5rem] md:text-[9rem] leading-[0.8] scale-y-100 origin-left">
+  <div className="text-[3rem] md:text-[4rem]  origin-left">
     STUDIOS
   </div>
 </div>

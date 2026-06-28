@@ -1,4 +1,10 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Inconsolata,
+  Boldonse,
+} from "next/font/google";
+
 import "./globals.css";
 import Navbar from "./Nav/page";
 
@@ -12,6 +18,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const inconsolata = Inconsolata({
+  variable: "--font-inconsolata",
+  subsets: ["latin"],
+  weight: ["200", "300", "400"],
+});
+
+const boldonse = Boldonse({
+  variable: "--font-boldonse",
+  subsets: ["latin"],
+  weight: "400",
+});
+
 export const metadata = {
   title: "Max Efforts Studios",
   description: "Creative Digital Studio",
@@ -21,12 +39,17 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`
+        ${geistSans.variable}
+        ${geistMono.variable}
+        ${inconsolata.variable}
+        ${boldonse.variable}
+        h-full
+        antialiased
+      `}
     >
-      <body className="min-h-full flex flex-col ">
-    <Navbar/>
-
-        {/* Page Content */}
+      <body className="min-h-full flex flex-col">
+        <Navbar />
         <main className="flex-1">{children}</main>
       </body>
     </html>

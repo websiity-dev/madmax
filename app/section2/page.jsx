@@ -2,6 +2,8 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Marquee from "react-fast-marquee";
+import WhoWeAre from "../section3/page";
 
 export default function Section2() {
   const sectionRef = useRef(null);
@@ -15,7 +17,6 @@ export default function Section2() {
     "/images/grop2.png",
     "/images/group3.png",
     "/images/group4.png",
-    
     "/images/grop2.png",
     "/images/group3.png",
   ];
@@ -30,27 +31,65 @@ export default function Section2() {
   ];
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-[150vh] bg-black overflow-hidden px-0 py-20 z-20 flex items-center justify-center"
-    >
-      {/* Background Text Image */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none select-none opacity-30">
-        <img src="/images/Bg_text.png" alt="" className="w-full h-auto object-contain" />
-      </div>
+    <>
+      {/* Mobile View */}
+      <section className="md:hidden relative bg-black w-full overflow-hidden py-10 z-20">
+        <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none select-none opacity-30">
+          <img src="/images/Bg_text.png" alt="" className="w-full h-auto object-contain" />
+        </div>
+        
+    <div className="relative z-10 w-full"> 
+      <Marquee autoFill speed={40} gradient={false}> 
+        {
+      images.map((src, idx) => ( 
+      <div key={`mobile-${idx}`} className="w-100 flex-none flex justify-center">
+         <img src={src} alt={`mobile-card-${idx}`} className="h-auto object-cover" style={{ aspectRatio: "1/1" }} /> 
+         </div> 
+         )
+         )
+         } 
+        </Marquee>
+     </div>
+      </section>
 
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center z-10">
-        {images.map((src, idx) => (
-          <ScrollCard
-            key={idx}
-            src={src}
-            idx={idx}
-            scrollYProgress={scrollYProgress}
-            config={cardConfigs[idx]}
-          />
-        ))}
-      </div>
-    </section>
+      {/* Desktop View */}
+  <section
+  ref={sectionRef}
+  className="hidden md:block relative min-h-[250vh] bg-black overflow-hidden"
+>
+  {/* Background */}
+  <div className="absolute inset-0 z-0 flex items-center justify-center opacity-30 pointer-events-none">
+    <img
+      src="/images/Bg_text.png"
+      alt=""
+      className="w-full h-auto object-contain"
+    />
+    <img
+      src="/images/Bg_text.png"
+      alt=""
+      className="flex absolute  justify-center  items-center"
+    />
+  </div>
+
+  {/* Sticky Cards */}
+  <div className="sticky top-0 h-screen flex items-center justify-center z-10">
+    {images.map((src, idx) => (
+      <ScrollCard
+        key={idx}
+        src={src}
+        idx={idx}
+        scrollYProgress={scrollYProgress}
+        config={cardConfigs[idx]}
+      />
+    ))}
+  </div>
+
+  {/* Content Below */}
+<div className="relative z-20 w-full">
+  <WhoWeAre />
+</div>
+</section>
+    </>
   );
 }
 
