@@ -79,7 +79,7 @@ export default function Carousel3D({ cards = defaultCards }) {
   };
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center bg-black">
       {/* 3D Carousel Container */}
       <div className="relative w-full h-[350px] md:h-[500px] mb-16 md:mb-32 mt-8 md:mt-16 flex items-center justify-center overflow-visible [perspective:1200px] md:[perspective:1200px] [perspective:800px]">
         <motion.div
