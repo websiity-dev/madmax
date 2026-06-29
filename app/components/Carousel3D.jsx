@@ -139,7 +139,7 @@ export default function Carousel3D({ cards = defaultCards }) {
         <div className="relative">
        
           
-          <h2   style={{ fontFamily: "'Boldonse', sans-serif" }} className="text-4xl md:text-[2.75rem] font-black mb-0 uppercase leading-none drop-shadow-lg tracking-tighter">
+          <h2  style={{ fontFamily: "'Boldonse', sans-serif" }} className="text-4xl md:text-[2.75rem] font-black mb-0 uppercase leading-none drop-shadow-lg tracking-tighter text-white">
             PRE-PRODUCTION
           </h2>
           <h3   style={{ fontFamily: "'Boldonse', sans-serif" }} className="text-xl md:text-2xl font-bold mb-4 mt-1.5 uppercase text-white drop-shadow-md tracking-widest">
@@ -163,10 +163,10 @@ export default function Carousel3D({ cards = defaultCards }) {
 
         {/* Top Right */}
         <div className="relative md:text-right">
-          <h2   style={{ fontFamily: "'Boldonse', sans-serif" }} className="text-4xl md:text-[2.75rem] font-black mb-0 uppercase leading-none drop-shadow-lg tracking-tighter">
+          <h2   style={{ fontFamily: "'Boldonse', sans-serif" }} className="text-4xl md:text-[2.75rem] font-black mb-0 uppercase text-white leading-none drop-shadow-lg tracking-tighter">
             POST-PRODUCTION
           </h2>
-          <h3   style={{ fontFamily: "'Boldonse', sans-serif" }} className="text-xl md:text-2xl font-bold mb-4 mt-1.5 uppercase text-white drop-shadow-md tracking-widest">
+          <h3  style={{ fontFamily: "'Boldonse', sans-serif" }} className="text-xl md:text-2xl font-bold mb-4 mt-1.5 uppercase text-white drop-shadow-md tracking-widest">
             SERVICES
           </h3>
           <ul style={{fontFamily:"'Bubbler One', sans-serif"}}  className="text-[14px] md:text-[24px] space-y-1 text-gray-200 font-medium flex flex-col md:items-end">

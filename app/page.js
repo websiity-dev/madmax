@@ -6,7 +6,7 @@ import Carousel3D from "./components/Carousel3D";
 
 export default function Home() {
   return (
-    <div>
+    <div className="bg-black">
   <div>
     <HeroPage/> 
   </div>
