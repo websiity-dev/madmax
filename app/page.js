@@ -11,7 +11,9 @@ export default function Home() {
     <HeroPage/> 
   </div>
   <Section2/>
-  <Section4/>
+ <div>
+   <Section4/>
+ </div>
 <div className="flex items-center justify-center w-full h-full md:col-span-2 mt-16 overflow-hidden">
   <Carousel3D/>
 </div>

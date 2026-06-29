@@ -20,10 +20,7 @@ const defaultCards = [
   { id: 8, title: "Event Coverage - 2024", image: "https://picsum.photos/seed/event1/400/600" },
   { id: 9, title: "Event Coverage - 2021", image: "https://picsum.photos/seed/event1/400/600" },
   { id: 10, title: "Event Coverage - 2022", image: "https://picsum.photos/seed/event1/400/600" },
-  { id: 11, title: "Event Coverage - 2023", image: "https://picsum.photos/seed/event1/400/600" },
-  { id: 12  , title: "Event Coverage - 2024", image: "https://picsum.photos/seed/event1/400/600" },
-  { id: 13, title: "Event Coverage - 2021", image: "https://picsum.photos/seed/event1/400/600" },
-  { id: 14, title: "Event Coverage - 2022", image: "https://picsum.photos/seed/event1/400/600" },
+  { id: 11, title: "Event Coverage - 2021", image: "https://picsum.photos/seed/event1/400/600" },
   
 ];
 
@@ -31,6 +28,25 @@ export default function Carousel3D({ cards = defaultCards }) {
   const [isHovered, setIsHovered] = useState(false);
   const [hoveredCard, setHoveredCard] = useState(null);
   
+  const [radius, setRadius] = useState(550);
+  const [cardSize, setCardSize] = useState({ w: 220, h: 320 });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setRadius(200);
+        setCardSize({ w: 120, h: 180 });
+      } else {
+        setRadius(550);
+        setCardSize({ w: 220, h: 320 });
+      }
+    };
+    
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const rotation = useMotionValue(0);
   const requestRef = useRef(null);
   const isDragging = useRef(false);
@@ -62,12 +78,10 @@ export default function Carousel3D({ cards = defaultCards }) {
     isDragging.current = false;
   };
 
-  const radius = 550; // Distance from center
-
   return (
     <div className="w-full flex flex-col items-center">
       {/* 3D Carousel Container */}
-      <div className="relative w-full h-[500px] mb-32 mt-16 flex items-center justify-center overflow-visible [perspective:1200px]">
+      <div className="relative w-full h-[350px] md:h-[500px] mb-16 md:mb-32 mt-8 md:mt-16 flex items-center justify-center overflow-visible [perspective:1200px] md:[perspective:1200px] [perspective:800px]">
         <motion.div
         className="relative w-full h-full flex items-center justify-center [transform-style:preserve-3d] cursor-grab active:cursor-grabbing select-none"
         style={{ rotateY: rotation }}
@@ -82,8 +96,10 @@ export default function Carousel3D({ cards = defaultCards }) {
           return (
             <div
               key={card.id}
-              className="absolute w-[220px] h-[320px] rounded-lg overflow-hidden transition-all duration-300 ease-in-out select-none"
+              className="absolute rounded-lg overflow-hidden transition-all duration-300 ease-in-out select-none"
               style={{
+                width: cardSize.w,
+                height: cardSize.h,
                 transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
                 boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
                 border: "2px solid rgba(255,255,255,0.1)",

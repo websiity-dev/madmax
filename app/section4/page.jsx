@@ -12,9 +12,9 @@ const Star = ({ color, className }) => (
 
 export default function Section4() {
   return (
-    <section className="relative w-full  bg-black text-white flex justify-center items-center ">
+    <section className="relative w-full z-[99999]  bg-black text-white flex justify-center items-center ">
       {/* Background Text Image */}
-      <div className="absolute inset-0 z-0 flex justify-center items-center opacity-30 pointer-events-none">
+      <div className="absolute overflow-hidden inset-0 z-0 flex justify-center items-center opacity-30 pointer-events-none">
         <Image 
           src="/images/bg_text2.png" 
           alt="Background Text" 
@@ -32,7 +32,7 @@ export default function Section4() {
         {/* Top Left */}
         <div className="relative">
           {/* Red Star */}
-          <Star color="#E60012" className="absolute -top-24 -left-16 w-78 h-78 z-[-1] -rotate-12 opacity-100" />
+          <Star color="#E60012" className="absolute -top-24 -left-16 w-78 h-78 z-[-1] -rotate-12 opacity-100 overflow-visible" />
           
           <h2   style={{ fontFamily: "'Boldonse', sans-serif" }} className="text-4xl md:text-[2.75rem] font-black mb-0 uppercase leading-none drop-shadow-lg tracking-tighter">
             PRE-PRODUCTION

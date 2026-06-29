@@ -29,9 +29,9 @@ export default function Navbar() {
       {/* Dark Blue Shutter Loader */}
       <motion.div
         initial={{ top: 0 }}
-        animate={{ top: "100vh" }}
+        animate={{ top: "120vh" }}
         transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1], delay: 0.1 }}
-        className="fixed left-0 right-0 h-[100vh] bg-[#050024] z-[9999] pointer-events-none"
+        className="fixed left-0 right-0 h-[120vh] bg-[#050024] z-[9999] pointer-events-none"
       />
 
       <motion.nav
