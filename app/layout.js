@@ -3,7 +3,10 @@ import {
   Geist_Mono,
   Inconsolata,
   Boldonse,
+  Bubbler_One
+  
 } from "next/font/google";
+ 
 
 import "./globals.css";
 import Navbar from "./Nav/page";
@@ -22,6 +25,11 @@ const inconsolata = Inconsolata({
   variable: "--font-inconsolata",
   subsets: ["latin"],
   weight: ["200", "300", "400"],
+});
+const bubblerOne = Bubbler_One({
+  variable: "--font-bubbler_one",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 const boldonse = Boldonse({
@@ -44,6 +52,7 @@ export default function RootLayout({ children }) {
         ${geistMono.variable}
         ${inconsolata.variable}
         ${boldonse.variable}
+        ${bubblerOne.variable}
         h-full
         antialiased
       `}

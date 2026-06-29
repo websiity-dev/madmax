@@ -50,6 +50,11 @@ export default function Section2() {
          } 
         </Marquee>
      </div>
+     
+      {/* Content Below Mobile */}
+      <div className="relative z-20 w-full mt-10">
+        <WhoWeAre />
+      </div>
       </section>
 
       {/* Desktop View */}
@@ -84,11 +89,11 @@ export default function Section2() {
     ))}
   </div>
 
-  {/* Content Below */}
-<div className="relative z-20 w-full">
-  <WhoWeAre />
-</div>
-</section>
+  {/* Content Below Desktop */}
+  <div className="relative z-20 w-full">
+    <WhoWeAre />
+  </div>
+</section> 
     </>
   );
 }
