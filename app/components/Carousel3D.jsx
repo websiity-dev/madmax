@@ -258,7 +258,7 @@ export default function Carousel3D({ cards = defaultCards }) {
           </h2>
           <h3  style={{ fontFamily: "'Boldonse', sans-serif" }} className=" animate-bg-blur text-xl md:text-2xl font-bold mb-4 mt-1.5 uppercase text-white drop-shadow-md tracking-widest">
             SERVICES
-          </h3>
+          </h3> 
           <ul style={{fontFamily:"'Bubbler One', sans-serif"}}  className="animate-carousel-list text-[14px] md:text-[24px] space-y-1 text-gray-200 font-medium flex flex-col md:items-end">
             <li>VIDEO EDITING</li>
             <li>TRAILER & TEASER EDITING</li>
