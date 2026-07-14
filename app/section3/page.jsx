@@ -12,26 +12,64 @@ export default function WhoWeAre() {
   const { scrollYProgress } = useScroll();
 
   useEffect(() => {
-    let typeSplit = new SplitType('[animate]', {
-      types: 'lines, words, chars',
+    let typeSplit = new SplitType('.animate-text', {
+      types: 'lines',
       tagName: 'span'
     });
 
-    gsap.from('[animate] .line', {
+    // Wrap lines for masked effect
+    document.querySelectorAll('.animate-text .line').forEach(line => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'line-wrapper';
+      wrapper.style.overflow = 'hidden';
+      // Inline block ensures the wrapper fits the text line correctly if needed,
+      // but block is fine for lines.
+      line.parentNode.insertBefore(wrapper, line);
+      wrapper.appendChild(line);
+    });
+
+    gsap.from('.animate-text .line', {
       scrollTrigger: {
-        trigger: '.max-w-xl',
-        start: 'top 60%',
+        trigger: '.animate-wrapper',
+        start: 'top 70%',
         toggleActions: 'play none none reverse',
       },
       y: '100%',
-      opacity: 0,
       duration: 0.9,
-      ease: 'power1.out',
+      ease: 'power3.out',
       stagger: 0.1,
+      delay: 1
+    });
+
+    // Image Slide Animation
+    const images = gsap.utils.toArray('.slide-img').reverse();
+    gsap.set(images, { zIndex: (i) => 3 - i });
+    
+    const tl = gsap.timeline({ repeat: -1 });
+    
+    images.forEach((img, i) => {
+      let nextImg = images[(i + 1) % images.length];
+      let nextNextImg = images[(i + 2) % images.length];
+      
+      tl.to(img, {
+        scale: 0.5,
+        opacity: 0,
+        duration: 1,
+        ease: 'power2.inOut',
+      }, "+=2")
+      .set(img, { scale: 1, zIndex: 0 })
+      .set(nextImg, { zIndex: 3 }, "<")
+      .set(nextNextImg, { zIndex: 2 }, "<")
+      .to(img, {
+        opacity: 1,
+        duration: 1,
+        ease: 'power1.inOut'
+      });
     });
 
     return () => {
       typeSplit.revert();
+      tl.kill();
     };
   }, []);
 
@@ -67,16 +105,15 @@ export default function WhoWeAre() {
       <span>O</span>
 
       <motion.img
-        src="/images/star.svg"
+        src="/images/star.png"
         alt="star"
         style={{ rotate }}
         className="
           absolute
-          w-16
+          w-40
           ml-2
-          
-          md:w-24
-          lg:w-48
+          md:w-80
+          lg:w-96
           top-1/2
           left-1/2
           -translate-x-1/2
@@ -109,12 +146,12 @@ export default function WhoWeAre() {
 
           {/* Description */}
      <div
-  className="mt-16 max-w-[560px] space-y-14"
+  className="animate-wrapper mt-16 max-w-[560px] space-y-6"
   style={{ fontFamily: "'Inconsolata', monospace" }}
 >
   <p
-    className="
-      text-[#CFCFCF]
+    className="animate-text
+      text-[#FFFFFF]
       uppercase
       text-[18px]
       md:text-[18px]
@@ -133,30 +170,35 @@ export default function WhoWeAre() {
   </p>
 
   <p
-    className="
-      text-[#CFCFCF]
+    className="animate-text
+      text-[#FFFFFF]
       uppercase
       text-[18px]
       md:text-[18px]
-      font-light
+      
+          font-extralight
       tracking-[0.14em]
       text-justify
       leading-[1.15]
+
     "
+     style={{ fontFamily: "'Inconsolata', monospace" }}
   >
     AT MAX EFFORTS STUDIOS, THE NAME REFLECTS THE WAY WE WORK.
   </p>
 
   <p
-    className="
-      text-[#CFCFCF]
+    className="animate-text
+      text-[#FFFFFF]
       uppercase
       text-[18px]
       md:text-[18px]
-      font-light
+      
+          font-extralight
       tracking-[0.14em]
       leading-[1.15]
     "
+     style={{ fontFamily: "'Inconsolata', monospace" }}
   >
     WE BELIEVE THAT MAXIMUM EFFORT LEADS TO MAXIMUM IMPACT. THIS
     COMMITMENT DRIVES EVERY STAGE OF OUR PROCESS, FROM CONCEPT
@@ -174,33 +216,28 @@ export default function WhoWeAre() {
             <img
               src="/images/group1.png"
               alt=""
-              className="absolute inset-0 w-full object-contain rotate-[-5deg]"
+              className="slide-img absolute inset-0 w-full object-contain rotate-[-5deg]"
             />
 
             {/* Middle Image */}
             <img
               src="/images/group3.png"
               alt=""
-              className="absolute inset-0 w-full object-contain rotate-[4deg]"
+              className="slide-img absolute inset-0 w-full object-contain rotate-[4deg]"
             />
 
             {/* Front Image */}
-            <motion.img
+            <img
               src="/images/grop2.png"
               alt=""
-              whileHover={{
-                scale: 1.03,
-                rotate: 0,
-              }}
-              transition={{ duration: 0.3 }}
-              className="absolute inset-0 w-full object-contain shadow-2xl"
+              className="slide-img absolute inset-0 w-full object-contain shadow-2xl"
             />
 
           </div>
 
           {/* Bottom Tagline */}
           <div className="absolute bottom-10 right-10">
-            <p className="uppercase tracking-[0.25em] text-xs text-gray-400">
+            <p  style={{ fontFamily: "'Inconsolata', monospace" }} className="uppercase tracking-[0.25em] font-extralight text-xs text-[#FFFFFF]">
               YOUR VISION. OUR MAXIMUM EFFORTS.
             </p>
           </div>

@@ -3,7 +3,8 @@ import {
   Geist_Mono,
   Inconsolata,
   Boldonse,
-  Bubbler_One
+  Bubbler_One,
+  Kolker_Brush
   
 } from "next/font/google";
  
@@ -19,6 +20,11 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+const brush_font = Kolker_Brush({
+  variable: "--font-brush_font",
+  subsets: ["latin"],
+  weight: "400"
 });
 
 const inconsolata = Inconsolata({
@@ -53,6 +59,7 @@ export default function RootLayout({ children }) {
         ${inconsolata.variable}
         ${boldonse.variable}
         ${bubblerOne.variable}
+        ${brush_font.variable}
         h-full
         antialiased
       `}

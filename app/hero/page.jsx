@@ -1,6 +1,37 @@
-import React from 'react';
+"use client";
+import React, { useEffect } from 'react';
+import gsap from "gsap";
+import SplitType from "split-type";
 
 export default function HeroPage() {
+  useEffect(() => {
+    let typeSplit = new SplitType('.animate-hero-text', {
+      types: 'lines',
+      tagName: 'span'
+    });
+
+    // Wrap lines for masked effect
+    document.querySelectorAll('.animate-hero-text .line').forEach(line => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'line-wrapper';
+      wrapper.style.overflow = 'hidden';
+      line.parentNode.insertBefore(wrapper, line);
+      wrapper.appendChild(line);
+    });
+
+    gsap.from('.animate-hero-text .line', {
+      y: '100%',
+      duration: 0.9,
+      ease: 'power3.out',
+      stagger: 0.1,
+      delay: 1
+    });
+
+    return () => {
+      typeSplit.revert();
+    };
+  }, []);
+
   return (
     <div className="relative  text-white font-sans min-h-screen  flex flex-col">
 
@@ -34,7 +65,7 @@ export default function HeroPage() {
   className="flex flex-col text-[#ff0033] uppercase tracking-tighter"
   style={{ fontFamily: "'Boldonse', Impact, sans-serif" }}
 >
-  <div className="flex items-end gap-2 md:gap-4 mt-3.5 md:mb-1 scale-y-120 origin-left leading-none">
+  <div className="flex items-end gap-2 md:gap-4 mt-8 md:mb-1 scale-y-120 origin-left leading-none">
     <span className="text-[10px] md:text-[1rem] -mb-6 md:-mb-0.5 ml-2">
       MAX
     </span>
@@ -50,8 +81,8 @@ export default function HeroPage() {
 </div>
         
         <div className="max-w-l text-gray-400 text-xs md:text-sm font-mono uppercase tracking-[0.1em] text-right leading-relaxed flex flex-col gap-8 pb-4">
-          <p>At Max Efforts Studios, the name reflects the way we work.</p>
-          <p>Our mission is to provide high-quality production services that help clients tell their stories through powerful visual content. Our vision is to become a trusted creative production company known for quality, innovation, and reliable service.</p>
+          <p className="animate-hero-text">At Max Efforts Studios, the name reflects the way we work.</p>
+          <p className="animate-hero-text">Our mission is to provide high-quality production services that help clients tell their stories through powerful visual content. Our vision is to become a trusted creative production company known for quality, innovation, and reliable service.</p>
         </div>
       </div>
     <div className="relative z-10 bg-black border-gray-900">

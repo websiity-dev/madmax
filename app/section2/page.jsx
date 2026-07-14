@@ -106,7 +106,7 @@ function ScrollCard({ src, idx, scrollYProgress, config }) {
 
   return (
     <motion.div
-      className="absolute h-[700px] aspect-[3/4] rounded-[30px] overflow-hidden"
+      className="absolute h-[700px]  rounded-[0px] overflow-hidden"
       style={{
         x,
         rotate,
