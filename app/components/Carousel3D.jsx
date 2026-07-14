@@ -263,7 +263,7 @@ export default function Carousel3D({ cards = defaultCards }) {
             <li>VIDEO EDITING</li>
             <li>TRAILER & TEASER EDITING</li>
             <li>COLOUR CORRECTION</li>
-            <li>COLOUR GRADING</li>
+            <li>COLOUR GRADING</li> 
             <li>VISUAL EFFECTS (VFX)</li>
             <li>MOTION GRAPHICS</li>
             <li>TITLE DESIGN</li>
