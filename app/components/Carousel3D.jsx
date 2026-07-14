@@ -122,27 +122,28 @@ export default function Carousel3D({ cards = defaultCards }) {
       stagger: 0.1,
     });
 
+    gsap.utils.toArray('.animate-bg-blur').forEach((el) => {
+      gsap.fromTo(el, 
+        { filter: 'blur(24px)' }, 
+        {
+          filter: 'blur(0px)',
+          duration: 2,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%', // Trigger slightly before the element fully enters
+            toggleActions: 'play none none reverse',
+          }
+        }
+      );
+    });
+
     return () => {
       typeSplitList.revert();
       typeSplitText.revert();
     };
   }, []);
 
-   gsap.utils.toArray('.animate-bg-blur').forEach((el) => {
-        gsap.fromTo(el, 
-          { filter: 'blur(24px)' }, 
-          {
-            filter: 'blur(0px)',
-            duration: 2,
-            ease: 'power2.out',
-            scrollTrigger: {
-              trigger: el,
-              start: 'top 85%', // Trigger slightly before the element fully enters
-              toggleActions: 'play none none reverse',
-            }
-          }
-        );
-      });
   const handlePan = (_, info) => {
     rotation.set(rotation.get() + info.delta.x * 0.5);
   };
