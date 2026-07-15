@@ -63,7 +63,7 @@ export default function HeroPage() {
       <div className="relative z-10 bg-black pt-1 px-12 pb-6 flex flex-col md:flex-row justify-between items-end gap-10 mt-auto">
        <div
   className="flex flex-col text-[#ff0033] uppercase tracking-tighter"
-  style={{ fontFamily: "'Boldonse', Impact, sans-serif" }}
+  style={{ fontFamily: "var(--font-boldonse)" }}
 >
   <div className="flex items-end gap-2 md:gap-4 mt-8 md:mb-1 scale-y-120 origin-left leading-none">
     <span className="text-[10px] md:text-[1rem] -mb-6 md:-mb-0.5 ml-2">

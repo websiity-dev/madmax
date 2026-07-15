@@ -88,10 +88,10 @@ export default function Section4() {
           {/* Red Star */}
           <Star color="#E60012" className="absolute -top-24 -left-16 w-78 h-78 z-[-1] -rotate-12 opacity-100 overflow-visible" />
           
-          <h2   style={{ fontFamily: "'Boldonse', sans-serif" }} className="animate-bg-blur  text-4xl md:text-[2.75rem] font-black mb-0 uppercase leading-none drop-shadow-lg tracking-tighter">
+          <h2   style={{ fontFamily: "var(--font-boldonse)" }} className="animate-bg-blur  text-4xl md:text-[2.75rem] font-black mb-0 uppercase leading-none drop-shadow-lg tracking-tighter">
             PRE-PRODUCTION
           </h2>
-          <h3   style={{ fontFamily: "'Boldonse', sans-serif" }} className="animate-bg-blur  text-xl md:text-2xl font-bold mb-4 mt-1.5 uppercase text-white drop-shadow-md tracking-widest">
+          <h3   style={{ fontFamily: "var(--font-boldonse)" }} className="animate-bg-blur  text-xl md:text-2xl font-bold mb-4 mt-1.5 uppercase text-white drop-shadow-md tracking-widest">
             SERVICES
           </h3>
           <ul style={{fontFamily:"'Bubbler One', sans-serif"}} className="animate-list-item text-[14px] md:text-[24px] space-y-1 text-gray-200 font-medium">
@@ -102,7 +102,7 @@ export default function Section4() {
             <li>CREATIVE DIRECTION</li>
             <li>MOOD BOARDS</li>
             <li>STORYBOARDING</li>
-            <li>SHOT LISTING</li>
+            <li>SHOT LISTING</li> 
             <li>LOCATION SCOUTING</li>
             <li>CASTING</li>
             <li>PRODUCTION PLANNING</li>
