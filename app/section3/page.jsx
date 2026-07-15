@@ -105,7 +105,7 @@ export default function WhoWeAre() {
       <span>O</span>
 
       <motion.img
-        src="/images/star.png"
+        src="/images/Star.png"
         alt="star"
         style={{ rotate }}
         className="
