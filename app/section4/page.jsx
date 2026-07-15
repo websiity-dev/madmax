@@ -71,7 +71,7 @@ export default function Section4() {
         <Image 
           src="/images/bg_text2.png" 
           alt="Background Text" 
-          priority
+          
           fill
           className="animate-bg-blur object-cover scale-[1.3] md:scale-[1.5]"
         />
