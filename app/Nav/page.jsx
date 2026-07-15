@@ -43,10 +43,22 @@ export default function Navbar() {
   }, []);
 
   const menuItems = [
-    "Home",
-    "Services",
-    "Project Gallery",
-    "Digital Platform",
+    {
+      name: "Home",
+      href: "/",
+    },
+    {
+      name: "Services",
+      href: "#services",
+    },
+    {
+      name: "Project Gallery",
+      href: "#project-gallery",
+    },
+    {
+      name: "Digital Platform",
+      href: "#digital-platform",
+    },
   ];
 
   return (
@@ -104,12 +116,14 @@ export default function Navbar() {
           className="hidden md:flex items-center gap-6 lg:gap-12 mt-4"
         >
           {menuItems.map((item) => (
-            <button
-              key={item}
-              onClick={() => setActive(item)}
-              className="relative flex items-center justify-center text-white uppercase"
+            <a
+              key={item.name}
+              href={item.href}
+              onClick={() => setActive(item.name)}
+              style={{cursor:'pointer'}}
+              className="relative flex items-center justify-center text-white uppercase "
             >
-              {active === item && (
+              {active === item.name && (
                 <motion.svg
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
@@ -129,9 +143,9 @@ export default function Navbar() {
               )}
 
               <span className="relative z-10 whitespace-nowrap text-white font-[100] uppercase tracking-[0.2em] text-xs">
-                {item}
+                {item.name}
               </span>
-            </button>
+            </a>
           ))}
         </motion.div>
 
@@ -218,20 +232,22 @@ export default function Navbar() {
 
             <div className="flex flex-col items-center gap-10">
               {menuItems.map((item) => (
-                <button
-                  key={item}
+                <a
+                  key={item.name}
+                  href={item.href}
                   onClick={() => {
-                    setActive(item);
+                    setActive(item.name);
                     setIsMobileMenuOpen(false);
                   }}
+                
                   className={`text-2xl md:text-4xl uppercase tracking-[0.2em] ${
-                    active === item
+                    active === item.name
                       ? "text-[#ff0033]"
                       : "text-white"
                   }`}
                 >
-                  {item}
-                </button>
+                  {item.name}
+                </a>
               ))}
             </div>
           </motion.div>

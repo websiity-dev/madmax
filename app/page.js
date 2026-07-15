@@ -9,13 +9,14 @@ import ReviewCarousel from "./components/Carousel";
 import AboutSection from "./section6/page";
 import CreativeFinalSection from "./footer/page";
 import Footer from "./footer/page";
-
+import CardModal from "./components/CardModal";
 
 export default function Home() {
   return (
     <div className="bg-black overflow-hidden">
   <div>
     <HeroPage/> 
+    <CardModal/>
   </div>
   {/* <ShutterTransition/> */}
   <Section2/>

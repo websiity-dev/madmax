@@ -65,7 +65,7 @@ export default function Section4() {
   }, []);
 
   return (
-    <section className="animate-section-4 relative w-full z-[99999]  bg-black text-white flex justify-center items-center ">
+    <section id="services" className="animate-section-4 relative w-full z-[99999]  bg-black text-white flex justify-center items-center ">
       {/* Background Text Image */}
       <div className="absolute overflow-hidden inset-0 z-0 flex justify-center items-center opacity-30 pointer-events-none">
         <Image 
